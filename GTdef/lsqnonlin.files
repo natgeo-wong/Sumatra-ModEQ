@@ -1,0 +1,20 @@
+#GPS_lsqnonlin_allfunc_1site.m:
+#GPS_lsqnonlin_allfunc_1site_prep.m
+#GPS_lsqnonlin_allfunc_1site_calc.m:
+
+#GPS_lsqnonlin_allfunc_1site_offset.m:
+#GPS_lsqnonlin_allfunc_1site_offlim.m:
+#GPS_lsqnonlin_allfunc_1site_post.m:
+#GPS_lsqnonlin_allfunc_1site_postEQs.m:
+#GPS_lsqnonlin_allfunc_1site_postSinCos.m:
+#GPS_lsqnonlin_allfunc_1site_remoffsets.m:
+#GPS_lsqnonlin_allfunc_1site_properrors.m:
+#GPS_lsqnonlin_allfunc_1site_errors.m
+#GPS_lsqnonlin_allfunc_1site_update.m:
+
+
+#GPS_readfitsum.m:
+#GPS_extract_GPSfitsum.m:
+
+# old file
+#GPS_plot1EQ4fitsum.m:

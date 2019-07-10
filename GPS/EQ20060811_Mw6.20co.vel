@@ -1,0 +1,8 @@
+1# EQ coseismic deformation extracted from GPS_extract_GPSfitsum.m
+# 1    2   3   4    5   6    7    8    9          10    11  12
+# Year Mon Day Hour Min Sec  Lon  Lat  Depth[km]  Mag   ID  Decyr
+# 2006 08 11 20 54 14.3700    96.34800    2.40300  22.0000  6.20    200608114057     2006.609589
+# 1   2   3   4      5  6  7  8   9   10  11      12 13  14 15    16
+# Sta Lon Lat Height OE ON OU ErE ErN ErU Weight  T0 T0D T1 T1D   Cne
+# Height [m] Disp [mm] error [mm]
+BSIM   96.326162185    2.409249037   -21.2606    -2.9   -22.1   -11.9    0.4  0.3  1.1    1.0  20060811  2006.609589  20060811  2006.609589  0.000

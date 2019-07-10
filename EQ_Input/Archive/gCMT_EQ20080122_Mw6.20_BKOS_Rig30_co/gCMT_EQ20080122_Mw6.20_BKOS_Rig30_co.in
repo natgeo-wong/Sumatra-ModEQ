@@ -1,0 +1,3 @@
+#fault type  name                  lon (d)   lat (d)   z1 (m)    z2 (m)    len (m)   str (d)   dip (d)   rake (m)   rs (m)   ts (m)   rake0 (m)   rakeX (m)   rs0 (m)   rsX (m)   ts0 (m)   tsX (m)   Nd   Ns
+fault  3     EQ20080122_Mw6.20co   0097.180    000.870    015499    018369    14588     332.0     017.0     103.0000  00.5846  00.0000  00.0      00.0      00.0      00.0      00.0      00.0      01   01
+

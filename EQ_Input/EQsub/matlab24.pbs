@@ -1,0 +1,25 @@
+#!/bin/bash
+#PBS -N matlab24
+#PBS -j oe
+#PBS -V
+#PBS -m bea
+#PBS -M nwong002@e.ntu.edu.sg
+#PBS -l walltime=3:00:00:00
+#PBS -l nodes=1:ppn=24
+#PBS -q q24
+###### -q <debug|q12|q16|q24>
+
+## pre-processing script
+cd $PBS_O_WORKDIR
+echo $PBS_O_WORKDIR
+NCPUS=`cat $PBS_NODEFILE | wc -l`
+echo "Number of cores available: $NCPUS"
+
+##Uncomment the below pathing if you are using intel compiler
+##export PATH=/usr/local/openmpi-1.4.5/intel/bin/:$PATH
+
+if [ -z ${file} ]; then
+  echo "matlab.pbs ERROR: need to specify input by -v file=run_MATLAB.m"
+else
+  /usr/local/MATLAB/R2016b/bin/matlab -nodesktop -nodisplay < $PBS_O_WORKDIR/$file
+fi

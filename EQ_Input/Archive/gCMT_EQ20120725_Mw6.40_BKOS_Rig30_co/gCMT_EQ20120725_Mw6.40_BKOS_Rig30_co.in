@@ -1,0 +1,3 @@
+#fault type  name                  lon (d)   lat (d)   z1 (m)    z2 (m)    len (m)   str (d)   dip (d)   rake (m)   rs (m)   ts (m)   rake0 (m)   rakeX (m)   rs0 (m)   rsX (m)   ts0 (m)   tsX (m)   Nd   Ns
+fault  3     EQ20120725_Mw6.40co   0095.930    002.460    014272    017616    18967     291.0     016.0     66.0000  00.7259  00.0000  00.0      00.0      00.0      00.0      00.0      00.0      01   01
+
