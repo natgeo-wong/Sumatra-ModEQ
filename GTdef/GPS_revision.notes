@@ -1,7 +1,0 @@
-(1) use midday to represent decimal years instead of the beginning of the day
-
-(2) adde GPS_gd2GD.m to replace the shell script GPS_gipsy_gd2GD
-
-(3) use '' to represent all files in the current directory instead of 'all.rneu' or 'all.GD'
-
-(4) modify GPS_cleanup.m
