@@ -9,7 +9,7 @@
 % bestfit location and parameters.
 %
 % INPUT:
-% -- 
+% -- N/A
 %
 % OUTPUT:
 % -- Datafiles containing model runs at each point and their misfits

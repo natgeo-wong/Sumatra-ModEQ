@@ -64,16 +64,16 @@
 %    -- Ns              : number of patches along slip
 %
 % 3) It will then save all these input parameters into an input file that
-%    will be named with the appendix "_input.in" so as to indicate that it
-%    is a raw input file that can be called for future use instead of
-%    having to call the input parameters again multiple times.
+%    will be named with the appendix "_co.eq" so as to indicate that it is
+%    a raw input file that can be called for future use instead of having
+%    to call the input parameters again multiple times.
 %
 %    The name of the general input file will also contain the following:
 %    a) (RM) Regression model (WC, BKOS, SAB)
 %    b) (RigYY) Magnitude of Rigidity (YY * 10^9 Pascals)
 %
 %    As such, the file name will have the following format:
-%       "EQYYYYMMDD_MwX.XX_RM_RigYY_input.in"
+%       "EQYYYYMMDD_MwX.XX_RM_RigYY_co.eq"
 %
 % VERSIONS:
 % 1) -- Created on 20160613 by Nathanael Wong
@@ -85,7 +85,7 @@
 %    -- Removed the unnecessary input of pnt and gps data.  This function
 %       now creates a general input file of solely fault parameters
 %
-% 2) -- Final version validated on 20190419 by Nathanael Wong
+% 2) -- Final version validated on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%% CHOOSING FAULT TYPE AND GPS DATA FORMAT %%%%%%%%%%%%%%%%%
 

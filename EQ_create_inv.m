@@ -1,6 +1,6 @@
 function EQinv = EQ_create_inv (EQtype)
 
-%                           EQ_input_fltfor.m
+%                            EQ_input_inv.m
 %        EQ Function that checks if the Model is Forward or Inverse
 %                     Nathanael Wong Zhixin, Feng Lujia
 %
@@ -10,7 +10,7 @@ function EQinv = EQ_create_inv (EQtype)
 % if is an inversion, then all variables will be assigned input values.
 %
 % INPUT:
-% -- Type of Fault Model (flttype)
+% -- Type of Fault Model (EQtype)
 %
 % OUTPUT:
 % -- rake0  : The minimum possible rake (?)
@@ -42,6 +42,8 @@ function EQinv = EQ_create_inv (EQtype)
 %
 % VERSIONS:
 % 1) -- Created on 20160614 by Nathanael Wong
+%
+% 2) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 flt = EQtype(1); EQinv.O = []; EQinv.X = []; EQinv.N = [];
 

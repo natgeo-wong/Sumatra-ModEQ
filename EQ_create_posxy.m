@@ -1,4 +1,4 @@
-function xy = EQ_create_posxy (flttype)
+function xy = EQ_create_posxy (flt)
 
 %                           EQ_input_fltcoord.m
 %          EQ Function that defines input for fault coordinates
@@ -9,10 +9,9 @@ function xy = EQ_create_posxy (flttype)
 % models that can be analysed in the EQ_ series of functions.
 %
 % For fault models 1 and 3, we will assume that EQlon1 and EQlat1 are the
-% coordinates of the epicenter.  Since for these models EQlon2 and EQlat2
-% will not be used we will assign these parameters to have value of 0.
-% Here, EQlon1 and EQlat1 are the coordinates of epicenter, not that of the
-% projection to the fault surface.
+% coordinates of the top-left fault-rupture endpoint.  Since for these
+% models EQlon2 and EQlat2 will not be used we will assign these parameters
+% to have value of NaN.
 %
 % For fault models 2 and 4, we will assume that EQlon1 and EQlat1 are the
 % coordinates of the top-left fault-rupture endpoint and that EQlon2 and
@@ -20,18 +19,14 @@ function xy = EQ_create_posxy (flttype)
 % used only when we have aftershock data which will help to define the
 % edges of the fault rupture.
 %
-% This function will also calculate the input of the EQdepth, or the
-% vertical burial depth, which is the depth at which the fault ruptured.
-%
 % INPUT:
-% -- Type of Fault Model (flttype)
+% -- flt : Type of Fault Model
 %
 % OUTPUT:
-% -- Longitude and Latitude of fault epicenter (for flttypes 1 & 3)
-% -- Longitudes and Latitude of fault endpoints (for flttypes 2 & 4)
-% -- Depth of fault-rupture
+% -- xy  : (lon,lat) coordinates of the fault rupture endpoints at the
+%    burial depth
 %
-% FORMAT OF CALL: EQ_imput_fltcoord
+% FORMAT OF CALL: EQ_create_posxy (fault model type)
 % 
 % OVERVIEW:
 % 1) This calls as input the flttype in order to determine the appropriate
@@ -57,10 +52,14 @@ function xy = EQ_create_posxy (flttype)
 %       of the epicenter
 %    -- For fault types 2 & 4, the function will call for an input of the
 %       epicenter coordinates in order to find the depth of the fault
+%
+% 2) -- Rewritten sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%% IMPORT LONGITUDE AND LATITUDE %%%%%%%%%%%%%%%%%%%%%%
 
-if flttype == 1 || flttype == 3
+if flt == 1 || flt == 3
     
     disp ('Longitude is between -180 and 180')
 	EQlon1 = input ('Recorded Longitude of Epicenter (d): ');
@@ -82,7 +81,7 @@ if flttype == 1 || flttype == 3
     
     EQlon2 = NaN; EQlat2 = NaN;
     
-elseif flttype == 2 || flttype == 4
+elseif flt == 2 || flt == 4
     
     disp ('Longitude is between -180? and 180?')
     EQlon1 = input ('Longitude of top-left Fault Endpoint (?): ');

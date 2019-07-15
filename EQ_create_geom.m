@@ -1,42 +1,42 @@
 function EQgeom = EQ_create_geom (EQtype)
 
-%                           EQ_input_fltext.m
-%         EQ Function that imports values for fault strike and dip
+%                             EQ_input_geom.m
+%         EQ Function that creates the strike and dip of the fault
 %                     Nathanael Wong Zhixin, Feng Lujia
 %
-% This function is created for the purpose of calling the fault parameters
-% that are defined by external data, namely the fault strike and dip.  For
-% flttypes 2 and 4 which do not require inputs for strike, the variable str
-% is saved as 0, and is not used in the parent function.
-%
-% The data is taken from the GCMT catalog.
+% This function is created for the purpose of determining the strike and
+% the dip of the fault.  If the fault strike and dip are to be taken by
+% external parameters (such as Slab1.0), then the strike and dip are set to
+% NaN.  Otherwise, the strike and dip will be defined by user input that is
+% taken from previous results such as gCMT or ANSS.
 %
 % INPUT:
-% -- Type of Fault Model (flttype)
+% -- EQtype : dataset containing fault modelling information
 %
 % OUTPUT:
-% -- Fault Strike (str) (for flttypes 1 & 3 only)
-% -- Fault Dip (dip)
+% -- EQgeom : vector containing fault geometry information
+%             [ strike dip ]
 %
-% FORMAT OF CALL: EQ_input_fltext (Fault Type)
-% 
+% FORMAT OF CALL: EQ_create_geom (EQtype)
+%
 % OVERVIEW:
-% 1) This calls as input the flttype in order to determine the appropriate
-%    subfunctions to call to define the strike.  If strike is not required
-%    for the fault type, then the strike is automatically set to 0.
+% 1) This calls as input EQtype which contains the fault modelling
+%    information, and then extracts the type of model and GPS data needed
 %
-% 2) The function will then call subfunctions to import the fault strike
-%    and dip.
-%
-% 3) The subfunctions that are called will define the strike and dip of the
-%    fault depending on the flttype that was input and return these
-%    coordinates as output.
+% 2) The function then determines if the geometry is to be determined by
+%    Slab input data.  If yes, then both strike and dip are set to NaN,
+%    while otherwise the function calls subfunctions to get user inputs for
+%    the strike and dip parameters.
 %
 % VERSIONS:
 % 1) -- Created on 20160614 by Nathanael Wong
 %
 %    -- Modified on 20160615 by Nathanael Wong
 %    -- Now calls subfunctions for strike and dip
+%
+% 2) -- Rewritten sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%% INITIALIZING "TYPE" STRUCTURE %%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,7 +45,7 @@ flt = EQtype(1); slab = EQtype(3);
 %%%%%%%%%%%%%%%%%%%%%%%%% IMPORT THE FAULT STRIKE %%%%%%%%%%%%%%%%%%%%%%%%%
 
 if slab == 1, str = NaN; dip = NaN;
-else str = EQ_create_geomstr (flt); dip = EQ_create_geomdip;
+else,         str = EQ_create_geomstr(flt); dip = EQ_create_geomdip;
 end
 
 EQgeom = [ str dip ];

@@ -1,7 +1,7 @@
 function EQdim = EQ_create_dim (EQID,EQtype)
 
-%                           EQ_input_fltreg.m
-%      EQ Function that defines input for Fault-Rupture Dimensions
+%                            EQ_create_dim.m
+%         EQ Function that calculates dimensions of fault rupture
 %                   Nathanael Wong Zhixin, Feng Lujia
 %
 % This function calculates the fault parameters that are defined not only
@@ -10,26 +10,30 @@ function EQdim = EQ_create_dim (EQID,EQtype)
 % model and the dimensions of the fault-rupture.
 %
 % INPUT:
-% -- Mw    : moment magnitude of earthquake (X.XX)
-% -- dip   : dip of fault (?)
-% -- z1    : vertical burial depth (m)
+% -- EQID   : data structure containing EQname, date and magnitude of event
+% -- EQtype : data vector containing information on type of modelling to be
+%             done, and on the type of event and GPS data
 %
 % OUTPUT:
-% -- RM    : regression model
-% -- len   : subsurface rupture length (m),
-%            calculated from regression equations and Mw
-% -- width : downdip rupture width (m),
-%            calculated from regression equations and Mw
-% -- z2    : vertical locking depth from surface (m),
-%            calculated from z1, dip and width
+% -- EQdim  : data structure containing dimensions of earthquake rupture
 %
-% FORMAT OF CALL: EQ_input_fltreg (Moment Magnitude)
+% FORMAT OF CALL: EQ_create_dim (EQID,EQtype)
 %
 % OVERVIEW:
-% 1) 
+% 1) From the input, the function extracts the magnitude, event type and
+%    the regression model to be used
+%
+% 2) Based on the selection of regression model, the function calls the
+%    relevant subfunctions containing the specifics of the appropriate
+%    regression model to obtain EQdim, which contains the information of
+%    the dimensions of the fault rupture.
 %
 % VERSIONS:
 % 1) -- Created on 20160613 by Nathanael Wong
+%
+% 2) -- Modified sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%% INITIALIZING "TYPE" STRUCTURE %%%%%%%%%%%%%%%%%%%%%%
 

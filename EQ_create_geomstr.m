@@ -1,42 +1,33 @@
 function str = EQ_create_geomstr (flt)
 
-%                           EQ_input_fltext.m
-%         EQ Function that imports values for fault strike and dip
+%                            EQ_input_geomstr.m
+%         EQ Function that defines user input for the fault strike
 %                     Nathanael Wong Zhixin, Feng Lujia
 %
-% This function is created for the purpose of calling the fault parameters
-% that are defined by external data, namely the fault strike and dip.  For
-% flttypes 2 and 4 which do not require inputs for strike, the variable str
-% is saved as 0, and is not used in the parent function.
-%
-% The data is taken from the GCMT catalog.
+% This function is created for the purpose of determining the strike of the
+% fault by user input.
 %
 % INPUT:
-% -- Type of Fault Model (flttype)
+% -- flt : fault input type for model
 %
 % OUTPUT:
-% -- Fault Strike (str) (for flttypes 1 & 3 only)
-% -- Fault Dip (dip)
+% -- str : fault strike
 %
-% FORMAT OF CALL: EQ_input_fltext (Fault Type)
-% 
+% FORMAT OF CALL: EQ_create_geomstr (model type)
+%
 % OVERVIEW:
-% 1) This calls as input the flttype in order to determine the appropriate
-%    subfunctions to call to define the strike.  If strike is not required
-%    for the fault type, then the strike is automatically set to 0.
+% 1) This calls as input flt, which in GTdef expresses the type of fault
+%    model input information required.
 %
-% 2) The function will then call subfunctions to import the fault strike
-%    and dip.
-%
-% 3) The subfunctions that are called will define the strike and dip of the
-%    fault depending on the flttype that was input and return these
-%    coordinates as output.
+% 2) If flt is equal to 1 and 3, then the strike input is required.
+%    Otherwise, flt is set to NaN.
 %
 % VERSIONS:
 % 1) -- Created on 20160614 by Nathanael Wong
 %
-%    -- Modified on 20160615 by Nathanael Wong
-%    -- Now calls subfunctions for strike and dip
+% 2) -- Rewritten sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%%%% IMPORT THE FAULT STRIKE %%%%%%%%%%%%%%%%%%%%%%%%%
 
