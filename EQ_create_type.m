@@ -1,6 +1,6 @@
-function EQtype = EQ_create_type
+function type = EQ_create_type
 
-%                          EQ_input_datatype.m
+%                            EQ_create_type.m
 %        EQ Function that defines the fault model and GPS datatype
 %                    Nathanael Wong Zhixin, Feng Lujia
 %
@@ -11,14 +11,12 @@ function EQtype = EQ_create_type
 % will be read differently by the functions GTdef and GTdef_open which
 % necessitates a function to define these important parameters.
 %
-% INPUT:
-% -- N/A
+% INPUT: N/A
 %
 % OUTPUT:
-% -- Type of Fault Model (type.flt)
-% -- Type of GPS Data Format (type.pnt)
+% -- type : GTdef model type information
 %
-% FORMAT OF CALL: EQ_imput_datatype
+% FORMAT OF CALL: EQ_create_type
 % 
 % OVERVIEW:
 % 1) This calls as input the type of fault model and the type of GPS data
@@ -32,6 +30,10 @@ function EQtype = EQ_create_type
 %
 % VERSIONS:
 % 1) -- Created on 20160614 by Nathanael Wong
+%
+% 2) -- Rewritten sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%% INITIALIZING "TYPE" STRUCTURE %%%%%%%%%%%%%%%%%%%%%%
 
@@ -41,7 +43,7 @@ slab = EQ_create_typeslab;
 evt  = EQ_create_typeevt (slab);
 reg  = EQ_create_typereg (evt);
 
-EQtype = [ flt pnt slab evt reg ];
+type = [ flt pnt slab evt reg ];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

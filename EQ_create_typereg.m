@@ -1,35 +1,34 @@
 function reg = EQ_create_typereg (evt)
 
-%                           EQ_input_fltreg.m
-%      EQ Function that defines input for Fault-Rupture Dimensions
+%                          EQ_create_typereg.m
+%           EQ Function that defines the regression method
 %                   Nathanael Wong Zhixin, Feng Lujia
 %
-% This function calculates the fault parameters that are defined not only
-% by external information, but also by mathematical equations defined by
-% heavily research regression models.  It returns as output the regression
-% model and the dimensions of the fault-rupture.
+% This function asks the user to select the regression type based on the
+% event type.  This is because regressions may have event types they are
+% specifically geared towrds.
 %
 % INPUT:
-% -- Mw    : moment magnitude of earthquake (X.XX)
-% -- dip   : dip of fault (?)
-% -- z1    : vertical burial depth (m)
+% -- evt : event type information
 %
 % OUTPUT:
-% -- RM    : regression model
-% -- len   : subsurface rupture length (m),
-%            calculated from regression equations and Mw
-% -- width : downdip rupture width (m),
-%            calculated from regression equations and Mw
-% -- z2    : vertical locking depth from surface (m),
-%            calculated from z1, dip and width
+% -- reg : regression ID
 %
 % FORMAT OF CALL: EQ_input_fltreg (Moment Magnitude)
 %
 % OVERVIEW:
-% 1) 
+% 1) Based on the event type information imported from the parent function,
+%    the function displays the most appropriate regression methods and asks
+%    for user input
+%
+% 2) The selected regression type is exported to the parent function
 %
 % VERSIONS:
 % 1) -- Created on 20160613 by Nathanael Wong
+%
+% 2) -- Rewritten sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% CHOOSE REGRESSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

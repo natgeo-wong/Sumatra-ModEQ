@@ -1,47 +1,34 @@
 function slab = EQ_create_typeslab
 
-%                            EQ_constr_slab.m
-%        EQ Function that determines if earthquake is a slab event
+%                           EQ_create_typeslab.m
+%        EQ Function that defines if the event occurred on a slab
 %                    Nathanael Wong Zhixin, Feng Lujia
 %
-% This function is created for the purpose of allowing the user to select
-% if the earthquake occurred as a slab event.
-%
-% If the earthquake occurred on the slab, we can use pre-existing data from
-% Slab 1.0, a resource provided by USGS, to determine the depth z1 of the
-% earthquake for a given longitude and latitude as the boundary between the
-% slabs is gives a fixed depth for a unique longitude and latitude.
-%
-% However, if the earthquake is not a slab event, but rather an intraslab
-% event or a crustal event, then z1 will have to be calculated manually
-% using equations from the GCMT data that provides longitude, latitude and
-% depth of the earthquake hypocenter.
+% This function helps to define if the event occurred on a slab.  If not,
+% the event will determine if a slab geometry needs to be created (for a
+% non-slab thrust event) or if there is no slab geometry and all model runs
+% occur at the same depth.
 %
 % INPUT:
 % -- N/A
 %
 % OUTPUT:
-% -- The variable "isslab" that determines if the earthquake is to be
-%    treated as an event on the slab interface or if it is an intraslab or
-%    crustal event.
+% -- slab : information on the fault slab structure
 %
-% FORMAT OF CALL: EQ_constr_slab
+% FORMAT OF CALL: EQ_create_typeslab
 % 
 % OVERVIEW:
-% 1) This function first displays the purpose of determining if the event
-%    has occurred on the slab.
+% 1) This function asks for user input on the slab geometry.
 %
-% 2) It will then ask if the earthquake is a slab event, and call for an
-%    input.
-%
-% 	 If the input is not in the specified format, it will generate an error
-%    message and ask for the user for an input of the parameter until a
-%    valid input format has been entered.
-%
-% 3) The input is saved as the variable "isslab" as an output
+% 2) The input is saved as the variable slab and exported as output into
+%    the parent function
 %
 % VERSIONS:
 % 1) -- Created on 20160613 by Nathanael Wong
+%
+% 2) -- Rewritten sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%% CHOOSE IF EVENT IS ON SLAB %%%%%%%%%%%%%%%%%%%%%%%%
 

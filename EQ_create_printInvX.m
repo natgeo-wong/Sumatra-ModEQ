@@ -1,6 +1,25 @@
 function EQ_create_printInvX (fEQ,X)
 
-
+%                           EQ_create_printInvX.m
+%      EQ Function that prints the inversion information in .eq files
+%                     Nathanael Wong Zhixin, Feng Lujia
+%
+% This function prints the inversion information found at the top of .eq
+% files to give the reader more information.
+%
+% INPUT:
+% -- fEQ : .eq file ID
+% -- X   : inversion information for sweep settings
+%
+% OUTPUT: N/A
+%
+% FORMAT OF CALL: EQ_create_printInvX (fEQ,X)
+% 
+% OVERVIEW:
+% 1) This function prints the inversion in the .eq files
+%
+% VERSIONS:
+% 1) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 fprintf (fEQ, '# InvX   rakeX   rsX');
 fprintf (fEQ, '       ');

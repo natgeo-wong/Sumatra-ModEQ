@@ -1,6 +1,6 @@
-function EQslip = EQ_create_slip (EQID, EQdim)
+function slip = EQ_create_slip (ID,dim)
 
-%                           EQ_input_fltMME.m
+%                           EQ_create_slip.m
 %       EQ Function that defines input for Rake, Rigidity and Slips
 %                   Nathanael Wong Zhixin, Feng Lujia
 %
@@ -17,21 +17,16 @@ function EQslip = EQ_create_slip (EQID, EQdim)
 % magnitudes of the strike-slip, dip-slip and tensile-slip components.
 %
 % INPUT:
-% -- Mw   : Moment Magnitude Mw of Earthquake (X.XX)
-% -- area : Fault-Rupture Area
+% -- ID  : earthquake ID information
+% -- dim : fault rupture dimensions
+%          [ length width area ]
 %
 % OUTPUT:
-% -- rake : direction of slip with respect to fault (d)
-% -- mu   : rigidity
-% -- rs   : total slip displacement (m)
-% -- ss   : strike-slip displacement (m),
-%           calculated from Mw and rake given by GCMT Catalog
-% -- ds   : dip-slip displacement (m)
-%           calculated from Mw and rake given by GCMT Catalog
-% -- ts   : tensile-slip displacement (m)
-%           calculated from Mw and rake given by GCMT Catalog
+% -- slip : structure containing slip information
+%           .MME  [ rake rigidity(mu) ]
+%           .disp [ rake-slip strike-slip dip-slip tensile-slip ]
 %
-% FORMAT OF CALL: EQ_input_fltMME (Moment Magnitude, Fault-Rupture Area)
+% FORMAT OF CALL: EQ_create_slip (ID,dimensions)
 %
 % OVERVIEW:
 % 1) The equation will first call for an input of the rake and the
@@ -39,25 +34,29 @@ function EQslip = EQ_create_slip (EQID, EQdim)
 %    the units of mu are in GigaPascals, neccessitating a conversion to
 %    Pascals later on when the equations is applied.
 %
-% 2) The function will then take as input the moment magnitude Mw and
-%    convert it to seismic moment M0.
+% 2) The function will then extract the moment magnitude Mw from prior
+%    input and convert it to seismic moment M0.
 %
-% 3) The function will then take as input the area of the fault-rupture and
-%    use it to calculate the total displacement along the rake "rs" using
-%    the seismic moment, rigidity and fault-rupture area.
+% 3) The function will then extract the area of the fault-rupture and use
+%    it to calculate the total displacement along the rake "rs" using the
+%    seismic moment, rigidity and fault-rupture area.
 %
 % 4) Lastly, the function will then calculate the strike-slip, dip-slip and
 %    tensile-slip components and save them into the variables "ss", "ds"
 %    and "ts".
 %
 % 5) The variables "rake", "mu", "rs", "ss", "ds" and "ts" are then
-%    exported to the parent function.
+%    saved into a variable structure and exported to the parent function.
 %
 % VERSIONS:
 % 1) -- Created on 20160613 by Nathanael Wong
+%
+% 2) -- Rewritten sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
-Mw = EQID.ID(2); area = EQdim(3);
-EQslip.MME = []; EQslip.disp = [];
+Mw = ID.ID(2); area = dim(3);
+slip.MME = []; slip.disp = [];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INPUT RAKE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -90,8 +89,8 @@ else
     ts = rs * sind(rake); ds = 0;
 end
 
-EQslip.MME  = [ rake mu ];
-EQslip.disp = [ rs ss ds ts ];
+slip.MME  = [ rake mu ];
+slip.disp = [ rs ss ds ts ];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
