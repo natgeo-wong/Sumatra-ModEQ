@@ -1,6 +1,6 @@
-function z1 = EQ_pos_z1b (str,dip,EQlon,EQlat,z1,lpos)
+function z1 = EQ_pos_z1b (str,dip,EQlon,EQlat,EQz1,pos)
 
-%                        EQ_looppara_z1backthrust.m
+%                               EQ_pos_z1b.m
 %         EQ Function that calculates Burial Depth z1 on Backthrust
 %                     Nathanael Wong Zhixin, Feng Lujia
 %
@@ -26,22 +26,17 @@ function z1 = EQ_pos_z1b (str,dip,EQlon,EQlat,z1,lpos)
 % small displacement can be assumed to be a flat plane.
 %
 % INPUT:
-% -- str        : strike of fault
-% -- dip        : dip of fault
-% -- EQlon      : longitude of earthquake epicenter
-% -- EQlat      : latitude of earthquake epicenter
-% -- EQdepth    : depth of earthquake epicenter
-%
-% -- lon        : longitude of point defining fault-rupture position
-% -- lat        : latitude of point defining fault-rupture position
+% -- str   : strike of fault
+% -- dip   : dip of fault
+% -- EQlon : initial earthquake longitude
+% -- EQlat : initial earthquake latitude
+% -- EQz1  : initial burial depth
+% -- pos   : depth of earthquake epicenter
 %
 % OUTPUT:
-% -- z1         : vertical burial depth
+% -- z1    : burial depth matrix
 %
-% FORMAT OF CALL: EQ_looppara_z1backthrust (strike, dip,
-%                     epicenter longitude, epicenter latitude,
-%                     epicenter depth,
-%                     endpoint longitude, endpoint latitude)
+% FORMAT OF CALL: EQ_pos_z1b (strike,dip,EQlon,EQlat,EQz1,gridsearch coord)
 %
 % OVERVIEW:
 % 1) The following parameters have to be defined first:
@@ -61,26 +56,30 @@ function z1 = EQ_pos_z1b (str,dip,EQlon,EQlat,z1,lpos)
 %    meaning the fault endpoint is closer to the fault than the epicenter.
 %
 % 5) The vertical burial depth z1 (m) will then be calculated using the
-%    depth of the epicenter EQdepth and the variable "per_disp" and the
+%    initial burial depth  and the variable "per_disp" and the
 %    fault dip "dip".
 %
 % VERSIONS:
 % 1) -- Created on 20160615 by Nathanael Wong
+% 
+% 2) -- Modified sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% DEFINING PARAMETERS %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-R_E = 6371e3; lon1 = lpos(:,1); lat1 = lpos(:,2);
+R_E = 6371e3; lon = pos(:,1); lat = pos(:,2);
 
 %%%%%%%%%%%%%%% CALCULATING X-, Y- DISPLACEMENTS AND ANGLE %%%%%%%%%%%%%%%%
 
-ydisp = 2*pi*R_E*(lat1 - EQlat)/360;
-xdisp = 2*pi*R_E*cosd(lat1).*(lon1 - EQlon)/360;
+ydisp = 2*pi*R_E*(lat - EQlat)/360;
+xdisp = 2*pi*R_E*cosd(lat).*(lon - EQlon)/360;
 theta = atan2d (xdisp, -ydisp);
 
 %%%%%%%% CALCULATING PERPENDICULAR DISPLACEMENTS AND BURIAL DEPTH %%%%%%%%%
 
 per_disp = sqrt (xdisp.^2 + ydisp.^2) .* sind (180 - str - theta);
-z1 = z1 + per_disp * tand(dip);
+z1 = EQz1 + per_disp * tand(dip);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

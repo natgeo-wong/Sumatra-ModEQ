@@ -1,6 +1,6 @@
-function [ mfit ] = EQ_mfit (outmat,r,d_act,d_err)
+function [ mfit ] = EQ_mfit (d_out,r,d_act,d_err)
 
-% %                              EQ_mfit.m
+%                                EQ_mfit.m
 %       EQ Function that calculates Misfit for each Loop Iteration
 %                   Nathanael Wong Zhixin, Feng Lujia
 %
@@ -10,38 +10,38 @@ function [ mfit ] = EQ_mfit (outmat,r,d_act,d_err)
 % displacements are in meters.
 %
 % INPUT:
-% -- input  : the name of the input file
-% -- output : the name of the output file
-% -- r      : the number of SuGAr stations
+% -- d_out : modelled displacement vectors (array)
+% -- d_act : observed displacement vectors (vector)
+% -- d_err : uncertainty in observed displacement vectors
+% -- r     : number of GPS displacement vectors
+%            if pnt = 1, (1 * number of stations)
+%            if pnt = 2, (2 * number of stations)
+%            if pnt = 3, (3 * number of stations)
 %
 % OUTPUT:
-% -- misfit : the difference calculated in the displacements between the
-%             model projection and the recorded observations
+% -- mfit : array of calculated misfit for current iteration
 %
-% FORMAT OF CALL: EQ_loopsize_para1 (input output, r)
+% FORMAT OF CALL: EQ_mfit (modelled,number,observed,uncertainty)
 %
 % OVERVIEW:
-% 1) This function will first call for the input file, which contains the
-%    actual GPS displacements recorded, and using GTdef_open will import
-%    the actual displacements
+% 1) This function take in as input the observed displacement vectors and
+%    their uncertainties (taken from GPS data), as well as the modelled
+%    displacements from the entire loop (imported as array).
 %
-% 2) Then the function will call for the output file that was generated
-%    using GTdef on the input file, before using GTdef_open to import the
-%    displacements predicted by the model.
+% 2) The function then proceeds to calculate the rms, and the misfit.
 %
-% 3) The function will then calculate the misfit via taking the
-%    root-mean-square of the differences between the individual parameters
-%
-% 4) The misfit will then be exported to the parent function.
+% 3) The function then exports the misfit variables to the parent function.
 %
 % VERSIONS:
 % 1) -- Created on 20160613 by Nathanael Wong
+% 
+% 2) -- Modified sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%% IMPORT PREDICTED DISPLACEMENT RECORDED BY SUGAR %%%%%%%%%%%%%
 
-d_act = reshape (d_act',1,r);
-d_err = reshape (d_err',1,r);
-d_out = outmat;
+d_act = reshape(d_act',1,r); d_err = reshape(d_err',1,r);
 
 d_var  = d_out - d_act;  %d_var  = bsxfun(@minus,d_out,d_act);
 d_actw = d_act ./ d_err; %d_actw = bsxfun(@rdivide,d_act,d_err);

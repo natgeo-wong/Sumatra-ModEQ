@@ -1,56 +1,29 @@
-function poszsd = EQ_pos_zsd (pos,data,size)
+function zsd = EQ_pos_zsd (pos,data,size)
 
-%                        EQ_looppara_z1backthrust.m
-%         EQ Function that calculates Burial Depth z1 on Backthrust
+%                                EQ_pos_zsd.m
+%         EQ Function that calculates the depth, strike and dip
 %                     Nathanael Wong Zhixin, Feng Lujia
 %
-% This function calculates the vertical burial depth and vertical locking
-% depth of the fault if its endpoint is at llon1 and llat1, while its
-% epicenter is at EQlon1 and EQlat1 with depth EQdepth, and the fault has
-% strike "str" and dip "dip" with fault width "width".
-%
-% Depending on if the earthquake occurred on a slab interface or otherwise
-% as defined by the variable "isslab", an interpolation of the depth
-% defined by the variable "z" can be used to calculate z1 of an interface
-% event as opposed to assuming a flat surface and planar geometery and
-% calculating z1 using the function EQ_looppara_z1 backthrust.
-%
-% From z1, we are able to calculate z2 using the width and the dip of the
-% fault.
-%
-% We are assuming in this function that the surface of the Earth for such a
-% small displacement can be assumed to be a flat plane.
+% This function calculates the depth, strike and dip of the fault geometry
+% for the entire gridsearch area.
 %
 % INPUT:
-% -- isslab     : defines if event is a slab interface event
-% -- z          : contains the Slab 1.0 interpolation data
-%
-% -- width      : width of fault-rupture
-% -- str        : strike of fault
-% -- dip        : dip of fault
-% -- EQlon1     : longitude of earthquake epicenter
-% -- EQlat1     : latitude of earthquake epicenter
-% -- EQdepth    : depth of earthquake epicenter
-%
-% -- llon1      : longitude of point defining fault-rupture position
-% -- llat1      : latitude of point defining fault-rupture position
+% -- pos  : gridsearch coordinate positions
+% -- data : earthquake initial input data
+% -- size : number of gridsearch points
 %
 % OUTPUT:
-% -- z1         : vertical burial depth
-% -- z2         : vertical locking depth
+% -- zsd : vector containing fault geometry details
+%          [ burial locking strike dip ]
 %
-% FORMAT OF CALL: EQ_looppara_z1backthrust (isslab
-%                     width, strike, dip,
-%                     epicenter longitude, epicenter latitude,
-%                     epicenter depth,
-%                     endpoint longitude, endpoint latitude)
+% FORMAT OF CALL: EQ_pos_zsd (gridsearch coord,event data,size)
 %
 % OVERVIEW:
-% 1) The function will use the input "isslab" to determine if the data from
-%    Slab 1.0 can be used.
+% 1) The function will use the event data to determine if the data from
+%    Slab1.0 can be used.
 %
-% 2) z1 is calculated, either from the data from Slab 1.0 or using the
-%    function EQ_looppara_z1backthrust.
+% 2) z1 is calculated, either from the data from Slab1.0 or using the
+%    function EQ_pos_z1b or remains the same
 %
 % 3) z2 is then calculated using the fault width and dip and the calculated
 %    value of z1.
@@ -59,6 +32,10 @@ function poszsd = EQ_pos_zsd (pos,data,size)
 %
 % VERSIONS:
 % 1) -- Created on 20160613 by Nathanael Wong
+% 
+% 2) -- Modified sometime in 2017
+%
+% 3) -- Final version validated and commented on 20190715 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%% IMPORTING INTERPOLANT DATA %%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -95,6 +72,6 @@ z2 = z1 + wid .* sind(dip);          % Vertical locking depth
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-poszsd = [ z1 z2 str dip ];
+zsd = [ z1 z2 str dip ];
 
 end
