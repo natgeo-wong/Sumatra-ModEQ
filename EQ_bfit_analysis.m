@@ -31,3 +31,5 @@ fprintf (fbfit,'#     - Lat (d): %.2f\n',wlat);
 fprintf (fbfit,'#     - Weighted Var Explained (%%): %.2f\n',wbest);
 fprintf (fbfit,'#     - Count: %d\n',wcount);
 fprintf (fbfit,'#     - ii Count: %d',wii);
+
+end

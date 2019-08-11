@@ -1,13 +1,13 @@
 function EQ_print_flt4 (finput,data,EQin)
 
-%                              EQ_print_flt3.m
-%      EQ Function that Format Prints the Input for Fault Model Type 3
+%                              EQ_print_flt4.m
+%      EQ Function that Format Prints the Input for Fault Model Type 4
 %                     Nathanael Wong Zhixin, Feng Lujia
 %
 % This function format prints the input for the fault variables according
-% to the fault model of format type 3.
+% to the fault model of format type 4.
 %
-% Format type 3 requires the longitude and latitude coordinates of only the
+% Format type 4 requires the longitude and latitude coordinates of only the
 % top-left corner of the fault-rupture, but requires the length and strike
 % of the fault.  It requires only the rake of the slip and the total slip
 % in the direction of the rake, and not the components of the total slip.
@@ -20,9 +20,9 @@ function EQ_print_flt4 (finput,data,EQin)
 % OUTPUT:
 % -- formatted print of the fault variables into the input file
 %
-% FORMAT OF CALL: EQ_print_flt3 (finput, ...
+% FORMAT OF CALL: EQ_print_flt4 (finput, ...
 %                     flttype, fltName, ...
-%                     lon, lat, z1, z2, len, str, dip, ...
+%                     lon1, lat1, lon2, lat2, z1, z2, dip, ...
 %                     rake, rs, ts, rake0, rakeX, rs0, rsX, ts0, tsX, ...
 %                     Nd, Ns)
 %
@@ -33,6 +33,8 @@ function EQ_print_flt4 (finput,data,EQin)
 %
 % VERSIONS:
 % 1) -- Created on 20160614 by Nathanael Wong
+%
+% 2) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRINT HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

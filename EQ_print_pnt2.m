@@ -1,7 +1,7 @@
 function EQ_print_pnt2 (finput,sites,vel)
 
-%                              EQ_print_pnt3.m
-%      EQ Function that Format Prints Type 3 GPS Data recorded by SuGAr
+%                              EQ_print_pnt2.m
+%      EQ Function that Format Prints Type 2 GPS Data recorded by SuGAr
 %                     Nathanael Wong Zhixin, Feng Lujia
 %
 % INPUT:
@@ -12,15 +12,15 @@ function EQ_print_pnt2 (finput,sites,vel)
 %
 % OUTPUT:
 % -- r : Number of SuGAr stations
-% -- Formatted print (fprintf) of the GPS data of format type 3
+% -- Formatted print (fprintf) of the GPS data of format type 2
 %
-% FORMAT OF CALL: EQ_print_pnt3 (finput, Stations, Data)
+% FORMAT OF CALL: EQ_print_pnt2 (finput, Stations, Data)
 % 
 % OVERVIEW:
-% 1) This function will take as input imported GPS data of format type 3.
+% 1) This function will take as input imported GPS data of format type 2.
 %
 % 2) This function will then format print the header for the GPS data of
-%    format type 3.
+%    format type 2.
 %
 % 3) The function will then count the number of GPS stations that recorded
 %    significant displacements from the earthquake event.
@@ -39,11 +39,9 @@ function EQ_print_pnt2 (finput,sites,vel)
 %
 %    -- Ue     : easting displacement measured by GPS station (m)
 %    -- Un     : northing displacement measured by GPS station (m)
-%    -- Uz     : vertical displacement measured by GPS station (m)
 %
 %    -- eUe    : error in measured easting displacement (m)
 %    -- eUn    : error in measured northing displacement (m)
-%    -- eUz    : error in measured vertical displacement (m)
 %
 %    -- weight : reliability of GPS station (m)
 %
@@ -52,6 +50,8 @@ function EQ_print_pnt2 (finput,sites,vel)
 %
 % VERSIONS:
 % 1) -- Created on 20160614 by Nathanael Wong
+%
+% 2) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRINT HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -79,7 +79,7 @@ for i = 1:r
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%% PRINT VARIABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    fprintf(finput,'  point 3      %s',site);
+    fprintf(finput,'  point 2      %s',site);
     fprintf(finput,'   ');
     fprintf(finput,'%-10.5f %-10.5f %-7.3f',loc);
     fprintf(finput,'   ');

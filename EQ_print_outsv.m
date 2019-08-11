@@ -1,6 +1,28 @@
 function [ outName ] = EQ_print_outsv (xx,outmat,data,GPS)
 
+%                            EQ_print_outsv.m
+%             EQ Function that prints misfit data into files
+%                     Nathanael Wong Zhixin, Feng Lujia
+%
+% This function prints a data matrix into text file containing the
+% GPS displacement information for the small (variance explained) loop
+%
+% INPUT:
+% -- xx     : rake ii
+% -- outmat : modelled GPS displacement
+% -- data   : earthquake event information
+% -- GPS    : GPS displacement information
+%
+% OUTPUT:
+% -- fID : filename
+%
+% FORMAT OF CALL: EQ_print_outsv (rakeii,mfitmat,data)
 
+% OVERVIEW:
+% 1) This function prints the output data into the file
+%
+% VERSIONS:
+% 1) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 EQID = data.EQID; EQID = strrep (EQID,'co','');
 regID = data.type(5); mu = data.slip(2);

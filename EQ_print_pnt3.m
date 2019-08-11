@@ -52,6 +52,8 @@ function EQ_print_pnt3 (finput,sites,vel)
 %
 % VERSIONS:
 % 1) -- Created on 20160614 by Nathanael Wong
+%
+% 2) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRINT HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

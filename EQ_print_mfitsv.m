@@ -1,6 +1,27 @@
 function [ mfitName ] = EQ_print_mfitsv (xx,mfitmat,data)
 
+%                            EQ_print_mfitsv.m
+%             EQ Function that prints misfit data into files
+%                     Nathanael Wong Zhixin, Feng Lujia
+%
+% This function prints a data matrix into text file containing the
+% misfit information for the small (variance explained) loop.
+%
+% INPUT:
+% -- xx      : rake ii
+% -- mfitmat : misfit data matrix
+% -- data    : earthquake event information
+%
+% OUTPUT:
+% -- fID : filename
+%
+% FORMAT OF CALL: EQ_print_mfitsv (rakeii,mfitmat,data)
 
+% OVERVIEW:
+% 1) This function prints the misfit data into the file
+%
+% VERSIONS:
+% 1) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 EQID = data.EQID; EQID = strrep (EQID,'co','');
 regID = data.type(5); mu = data.slip(2);

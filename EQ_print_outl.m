@@ -1,17 +1,38 @@
-function [ outName ] = EQ_print_outl (xx,outmat,data,GPS)
+function [ fID ] = EQ_print_outl (xx,outmat,data,GPS)
 
+%                            EQ_print_outl.m
+%             EQ Function that prints misfit data into files
+%                     Nathanael Wong Zhixin, Feng Lujia
+%
+% This function prints a data matrix into text file containing the
+% GPS displacement information for the large loop
+%
+% INPUT:
+% -- xx     : rake ii
+% -- outmat : modelled GPS displacement
+% -- data   : earthquake event information
+% -- GPS    : GPS displacement information
+%
+% OUTPUT:
+% -- fID : filename
+%
+% FORMAT OF CALL: EQ_print_outl (rakeii,mfitmat,data)
 
+% OVERVIEW:
+% 1) This function prints the output data into the file
+%
+% VERSIONS:
+% 1) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 EQID = data.EQID; EQID = strrep (EQID,'co','');
 regID = data.type(5); mu = data.slip(2);
 regname = EQ_create_printregname (regID);
 
-outName = [ EQID '_' regname '_' 'Rig' num2str(mu) '_' ...
-              'outl' xx '_co.txt' ];
+fID = [ EQID '_' regname '_' 'Rig' num2str(mu) '_outl' xx '_co.txt' ];
 
 sites = GPS.sites; n = numel(sites);
 
-fout = fopen (outName,'w');
+fout = fopen (fID,'w');
 
 fprintf (fout,'# Output DataFile for EQID: %s\n',data.EQID);
 fprintf (fout,'#                    COUNT: %s\n',xx);

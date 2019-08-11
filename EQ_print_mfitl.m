@@ -1,15 +1,35 @@
-function [ mfitName ] = EQ_print_mfitl (xx,mfitmat,data)
+function [ fID ] = EQ_print_mfitl (xx,mfitmat,data)
 
+%                            EQ_print_mfitl.m
+%             EQ Function that prints misfit data into files
+%                     Nathanael Wong Zhixin, Feng Lujia
+%
+% This function prints a data matrix into text file containing the
+% misfit information for the large loop
+%
+% INPUT:
+% -- xx      : rake ii
+% -- mfitmat : misfit data matrix
+% -- data    : earthquake event information
+%
+% OUTPUT:
+% -- fID : filename
+%
+% FORMAT OF CALL: EQ_print_mfitl (rakeii,mfitmat,data)
 
+% OVERVIEW:
+% 1) This function prints the misfit data into the file
+%
+% VERSIONS:
+% 1) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 EQID = data.EQID; EQID = strrep (EQID,'co','');
 regID = data.type(5); mu = data.slip(2);
 regname = EQ_create_printregname (regID);
 
-mfitName = [ EQID '_' regname '_' 'Rig' num2str(mu) '_' ...
-              'mfitl' xx '_co.txt' ];
+fID = [ EQID '_' regname '_' 'Rig' num2str(mu) '_' 'mfitl' xx '_co.txt' ];
 
-fmfit = fopen (mfitName,'w');
+fmfit = fopen (fID,'w');
 
 fprintf (fmfit,'# Misfit DataFile for EQID: %s\n',data.EQID);
 fprintf (fmfit,'#                    COUNT: %s\n',xx);

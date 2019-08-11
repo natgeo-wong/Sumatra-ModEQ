@@ -1,15 +1,39 @@
-function [ inName ] = EQ_print_insv (xx,inmat,data)
+function [ fID ] = EQ_print_insv (xx,inmat,data)
 
-
+%                              EQ_print_insv.m
+%           EQ Function that defines the names of the input files
+%                     Nathanael Wong Zhixin, Feng Lujia
+%
+% This function prints the data for the variance-explained into text file.
+%
+% INPUT:
+% -- xx    : rake ID
+% -- inmat : model data
+% -- data  : event initial information
+%
+% OUTPUT:
+% -- fID   : file name
+%
+% FORMAT OF CALL: EQ_print_insv (rakeii,inmat,data)
+% 
+% OVERVIEW:
+% 1) This function extracts information on the event to create the filename
+%
+% 2) The function then creates the file
+%
+% 3) The function then prints the data into the file
+%
+% VERSIONS:
+% 1) -- Final version validated and commented on 20190811 by Nathanael Wong
 
 EQID = data.EQID; EQID = strrep (EQID,'co','');
 regID = data.type(5); mu = data.slip(2);
 regname = EQ_create_printregname (regID);
 
-inName = [ EQID '_' regname '_' 'Rig' num2str(mu) '_' ...
+fID = [ EQID '_' regname '_' 'Rig' num2str(mu) '_' ...
               'insv' xx '_co.txt' ];
 
-fin = fopen (inName,'w');
+fin = fopen (fID,'w');
 
 fprintf (fin,'# Input DataFile for EQID: %s\n',data.EQID);
 fprintf (fin,'#                   COUNT: %s\n',xx);
