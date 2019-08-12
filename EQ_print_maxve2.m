@@ -11,7 +11,7 @@ function [ veName ] = EQ_print_maxve2 (veName,vedata,data,k)
 % -- veName : filename
 % -- vedata : data containing weighted variance-explained
 % -- data   : earthquake event input information
-% -- k      : rakeii
+% -- k      : 1,2,3 denoting whether first, second or third bestfit
 %
 % OUTPUT:
 % -- veName : filename
